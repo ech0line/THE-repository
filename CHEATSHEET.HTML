@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Cheatsheet</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body>
+<div class="cheatsheet">
+
+<header>
+    <h1>GIT CHEATSHEET</h1>
+    <p>Trygg arbeidsflyt · Git Bash · VS Code · GitHub</p>
+</header>
+
+<div class="columns">
+
+<div>
+<section>
+<h2>1. Førstegangsoppsett</h2>
+<p>Installer Git og VS Code. Kjør i Git Bash:</p>
+<pre>git config --global user.name "Ola Nordmann"
+git config --global user.email "ola@example.com"
+git config --global init.defaultBranch main
+git config --global --list</pre>
+</section>
+
+<section>
+<h2>2. Opprett repository</h2>
+<p>Opprett et repository på GitHub, kopier URL-en og klon:</p>
+<pre>cd /c/projects
+git clone &lt;url&gt;
+cd &lt;prosjektnavn&gt;
+code .</pre>
+<strong>Viktig:</strong> Ikke kjør <code>git init</code> etter <code>git clone</code>.
+</section>
+
+<section>
+<h2>3. Daglig arbeidsflyt</h2>
+<p><strong>PULL → JOBB → COMMIT → PUSH</strong></p>
+<pre>git status
+git pull
+# Jobb i VS Code
+git status
+git diff
+git add .
+git commit -m "Beskriv endringen"
+git push
+git status</pre>
+<ul>
+<li><code>status</code> – viser status og branch.</li>
+<li><code>pull</code> – henter endringer fra GitHub.</li>
+<li><code>diff</code> – viser endringene.</li>
+<li><code>add .</code> – klargjør endringer.</li>
+<li><code>commit</code> – lagrer et kontrollpunkt.</li>
+<li><code>push</code> – sender commits til GitHub.</li>
+</ul>
+<p>Commit ofte med beskrivende meldinger. Sikt på <code>working tree clean</code> før du avslutter.</p>
+</section>
+
+<section>
+<h2>4. Sikkerhet og .gitignore</h2>
+<ul>
+<li>Pull før arbeid; push før du avslutter.</li>
+<li>Opprett <code>.gitignore</code> tidlig.</li>
+<li>Ikke push passord, API-nøkler eller <code>.env</code>.</li>
+<li>Hvis en hemmelighet er pushet, bytt den.</li>
+<li>Unngå <code>git reset --hard</code> og <code>git push --force</code> uten å forstå konsekvensene.</li>
+</ul>
+<pre>node_modules/
+.env
+*.log</pre>
+<p><code>package.json</code> og <code>package-lock.json</code> skal normalt pushes.</p>
+</section>
+</div>
+
+<div>
+<section>
+<h2>5. Branches og merge</h2>
+<p>Bruk gjerne bare <code>main</code> i enkle individuelle prosjekter.</p>
+<pre>git branch
+git switch main
+git switch -c login
+git add .
+git commit -m "Lag innlogging"
+git push -u origin login</pre>
+<p><strong>Merge inn i main:</strong></p>
+<pre>git switch main
+git pull
+git merge login
+git push</pre>
+<p>Før branch-bytte: sjekk <code>git status</code> og håndter ucommittede endringer.</p>
+</section>
+
+<section>
+<h2>6. Merge conflicts</h2>
+<p>Oppstår når Git ikke automatisk kan kombinere motstridende endringer.</p>
+<ol>
+<li>Les konflikten i VS Code.</li>
+<li>Velg hvilke endringer som skal beholdes.</li>
+<li>Kontroller at koden er riktig.</li>
+<li>Fullfør:</li>
+</ol>
+<pre>git add .
+git commit -m "Løs merge conflict"
+git push</pre>
+<p>Ikke slett <code>.git</code> eller kjør tilfeldige kommandoer for å løse problemet.</p>
+</section>
+
+<section>
+<h2>7. Feilsøking</h2>
+<p>Når noe er galt, start med:</p>
+<pre>git status
+git branch
+git remote -v
+git log --oneline</pre>
+<ul>
+<li><code>status</code> – tilstanden til repositoryet.</li>
+<li><code>branch</code> – aktiv branch.</li>
+<li><code>remote -v</code> – tilkoblet GitHub-repository.</li>
+<li><code>log --oneline</code> – kort commit-historikk.</li>
+</ul>
+</section>
+
+<section>
+<h2>8. Kontroller før du avslutter</h2>
+<ul>
+<li>Riktig mappe i VS Code?</li>
+<li>Riktig branch, normalt <code>main</code>?</li>
+<li>Riktig repository? Sjekk <code>git remote -v</code>.</li>
+<li>Er siste commit pushet til GitHub?</li>
+<li>Viser GitHub riktig branch og filer?</li>
+</ul>
+</section>
+</div>
+
+</div>
+
+<footer>
+PULL FØR ARBEID · COMMIT OG PUSH ETTER ARBEID · GIT STATUS FØRST VED PROBLEMER
+</footer>
+
+</div>
+</body>
+</html>
+```
